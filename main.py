@@ -8,7 +8,7 @@ STATUS_SELECT_PLACE  = 'SELECT_PLACE'
 STATUS_SELECT_DATE   = 'SELECT_DATE'
 STATUS_SELECT_AMOUNT = 'SELECT_AMOUNT'
 
-class Sesssion:
+class Session:
     PICKLE_FILE = 'session.pickle'
     def __init__(self):
         self.place  = None
@@ -32,8 +32,11 @@ class Sesssion:
         os.remove(self.PICKLE_FILE)
 
 if __name__ == '__main__':
-    session = Sesssion.read_session()
+    # sessionを読み込み
+    session = Session.read_session()
+    # stateを取得
     state = session.state
+    # stateによって処理を分岐
     if state == STATUS_INITIAL:
         session.state = STATUS_SELECT_PLACE
         session.save_session()
